@@ -12,21 +12,25 @@ model User {
   email     String   @unique
   name      String?
   password  String
+  wishList  Book[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  wishList  Book[]
 }
 
 model Book {
-  id            String   @id @default(uuid())
-  title         String
-  author        String
-  averageRating Float?
-  ratingCount   Int?
-  language      String?
-  numPages      Int?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  User          User?    @relation(fields: [userId], references: [id])
-  userId        String?
+  id               String   @id @default(uuid())
+  title            String
+  authors          String
+  averageRating    String?
+  isbn             String?
+  isbn13           String?
+  languageCode     String?
+  numPages         String?
+  ratingsCount     String?
+  textReviewsCount String?
+  publicationDate  String?
+  publisher        String?
+  createdAt        DateTime @default(now())
+  User             User?    @relation(fields: [userId], references: [id])
+  userId           String?
 }

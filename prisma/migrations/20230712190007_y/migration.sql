@@ -14,13 +14,17 @@ CREATE TABLE "User" (
 CREATE TABLE "Book" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "author" TEXT NOT NULL,
-    "averageRating" DOUBLE PRECISION,
-    "ratingCount" INTEGER,
-    "language" TEXT,
-    "numPages" INTEGER,
+    "authors" TEXT NOT NULL,
+    "averageRating" TEXT,
+    "isbn" TEXT,
+    "isbn13" TEXT,
+    "languageCode" TEXT,
+    "numPages" TEXT,
+    "ratingsCount" TEXT,
+    "textReviewsCount" TEXT,
+    "publicationDate" TEXT,
+    "publisher" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT,
 
     CONSTRAINT "Book_pkey" PRIMARY KEY ("id")

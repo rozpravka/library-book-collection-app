@@ -26,14 +26,26 @@ router.get('/addABook', (req, res) => {
 
 router.post('/addABook', async (req, res) => {
     try {
-        const book = await prisma.book.create({
-            data: {
+        const book = await prisma.book.findFirst({
+            where: {
                 title: req.body.title,
-                author: req.body.author,
+                authors: req.body.author,
             }
         });
-        res.json(book);
-
+        if (book) {
+            res.json(`Book has already been added: \n${book}\n`);
+        }
+        else {
+            const previousCount = await prisma.book.count();
+            const addedBook = await prisma.book.create({
+                data: {
+                    title: req.body.title,
+                    authors: req.body.authors,
+                }
+            });
+            const currentCount = await prisma.book.count();
+            res.json(`Previous count of the books in the database: ${previousCount}\nCurrent count of the books in the database: ${currentCount}\nNewly added book: \n${addedBook}\n`);
+        }
     }
     catch (err) {
         console.log(err);
@@ -41,4 +53,6 @@ router.post('/addABook', async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = {
+    router
+}
