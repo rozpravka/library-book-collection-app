@@ -17,7 +17,7 @@ async function startServer() {
         app.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}.`);
         });
-        const count = await prisma.book.count();
+        const count = await prisma.Book.count();
         if (count < 10) {
             loadBooks();
         }
