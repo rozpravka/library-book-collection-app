@@ -30,6 +30,5 @@ model Book {
   publicationDate  String?
   publisher        String?
   createdAt        DateTime @default(now())
-  User             User?    @relation(fields: [userId], references: [id])
-  userId           String?
+  likedBy          User[]
 }

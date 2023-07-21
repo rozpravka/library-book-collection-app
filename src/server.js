@@ -17,8 +17,10 @@ async function startServer() {
         app.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}.`);
         });
+        await prisma.$connect();
+        console.log("Connected to the database.");
         const count = await prisma.Book.count();
-        if (count < 10) {
+        if (count < 10 || count === undefined) {
             loadBooks();
         }
         else {
@@ -27,6 +29,7 @@ async function startServer() {
     }
     catch (err) {
         console.log(err);
+        prisma.$disconnect();
     }
 };
 
