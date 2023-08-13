@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const { router } = require('./routes/router');
-const { loadBooks } = require('./routes/controller');
+const { loadBooks } = require('./dataLoader/dataLoader');
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 

@@ -3,8 +3,8 @@ const session = require('express-session');
 const passport = require('passport');
 const Prisma = require('prisma/prisma-client');
 const prisma = new Prisma.PrismaClient();
-require('../services/auth.js')
-const { isLoggedIn } = require('../services/auth.js');
+require('../middlewares/auth.js')
+const { isLoggedIn } = require('../middlewares/auth.js');
 require('dotenv').config();
 
 const router = express.Router();
@@ -145,7 +145,6 @@ router.post('/addABookToFav', async (req, res) => {
         console.log(err);
     }
 });
-
 
 module.exports = {
     router
